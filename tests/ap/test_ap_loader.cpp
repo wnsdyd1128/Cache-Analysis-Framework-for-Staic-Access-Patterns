@@ -2,12 +2,23 @@
 #include "ap/ApLoader.hpp"
 #include "ap/ApNode.hpp"
 
+#include <cstdio>
+#include <fstream>
+
 using namespace apex;
 
 // ── 헬퍼 ─────────────────────────────────────────────────────
 
 static std::vector<std::unique_ptr<ApNode>> load(const std::string& json) {
     return ApLoader{}.load_json_string(json);
+}
+
+/** shapes.yaml 내용을 임시 파일로 쓰고 경로를 반환한다. */
+static std::string write_shapes_yaml(const std::string& content) {
+    const std::string path = "/tmp/apex_test_shapes.yaml";
+    std::ofstream f(path);
+    f << content;
+    return path;
 }
 
 static const ArrayNode& as_array(const ApNode& n) {
@@ -84,6 +95,25 @@ TEST(ApLoader, loads_nested_loops) {
     EXPECT_EQ(inner.var,   "j");
     EXPECT_EQ(inner.bound, 8);
     EXPECT_EQ(inner.depth, 2);
+}
+
+// ── test_ap_loader: shapes.yaml fallback ─────────────────────
+
+TEST(ApLoader, loads_array_shape_from_shapes_yaml_when_json_has_none) {
+    const std::string yaml_path = write_shapes_yaml(
+        "shapes:\n  A: [50, 50]\n");
+    const std::string json = R"([{"type":"Array","name":"A","indices":["i"],"op":"load"}])";
+
+    auto nodes = ApLoader{}.with_shapes_yaml(yaml_path).load_json_string(json);
+
+    ASSERT_EQ(nodes.size(), 1u);
+    const auto& a = static_cast<const ArrayNode&>(*nodes[0]);
+    EXPECT_EQ(a.shape, (std::vector<int64_t>{50, 50}));
+}
+
+TEST(ApLoader, aborts_when_shape_missing_in_both_json_and_config) {
+    const std::string json = R"([{"type":"Array","name":"B","indices":["i"],"op":"load"}])";
+    EXPECT_THROW(ApLoader{}.load_json_string(json), std::runtime_error);
 }
 
 // ── test_ap_loader: call ──────────────────────────────────────
