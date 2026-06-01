@@ -81,6 +81,13 @@ foreach(src ${ANALYSIS_TESTS})
     apex_add_test(${name} ${src})
 endforeach()
 
+# Phase 6 — Report Layer
+file(GLOB REPORT_TESTS tests/report/*.cpp)
+foreach(src ${REPORT_TESTS})
+    get_filename_component(name ${src} NAME_WE)
+    apex_add_test(${name} ${src})
+endforeach()
+
 # Phase 7 — Integration
 file(GLOB INTEGRATION_TESTS tests/integration/*.cpp)
 foreach(src ${INTEGRATION_TESTS})
