@@ -76,6 +76,10 @@ cmake --build build
 ./build/test_event_builder
 ./build/test_memory_layout
 ./build/test_address_mapper
+./build/test_cache_set
+./build/test_cache_level
+./build/test_cache_hierarchy
+./build/test_yaml_parser
 ```
 
 ---
@@ -179,7 +183,7 @@ Rank  Loop    Access       Miss%  Share  Miss Type   Hint
 | 1 | CMake 골격 + 디렉터리 구조 | ✅ 완료 |
 | 2 | AP Layer (ApLoader, EventBuilder) | ✅ 완료 |
 | 3 | Memory Layer (MemoryLayout, AddressMapper) | ✅ 완료 |
-| 4 | Cache Layer (YamlConfigParser, LRU 시뮬레이션) | ⬜ 예정 |
+| 4 | Cache Layer (YamlConfigParser, LRU 시뮬레이션) | ✅ 완료 |
 | 5 | Analysis Layer (Attribution, MissClassifier, Diagnostics) | ⬜ 예정 |
 | 6 | Report Layer (CSV / JSON / Markdown) | ⬜ 예정 |
 | 7 | CLI + 통합 테스트 | ⬜ 예정 |
