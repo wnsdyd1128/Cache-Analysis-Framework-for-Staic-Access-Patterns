@@ -1,0 +1,719 @@
+{
+    "functions": [
+        {
+            "annotations": [
+                "yard.analyze"
+            ],
+            "body": [
+                {
+                    "body": [
+                        {
+                            "access_path": [
+                                {
+                                    "kind": "index",
+                                    "value": "j"
+                                }
+                            ],
+                            "indices": [
+                                "j"
+                            ],
+                            "name": "mean[j]",
+                            "object": "global::mean",
+                            "op": "store",
+                            "type": "Array"
+                        },
+                        {
+                            "body": [
+                                {
+                                    "access_path": [
+                                        {
+                                            "kind": "index",
+                                            "value": "i"
+                                        },
+                                        {
+                                            "kind": "index",
+                                            "value": "j"
+                                        }
+                                    ],
+                                    "indices": [
+                                        "i",
+                                        "j"
+                                    ],
+                                    "name": "data[i][j]",
+                                    "object": "global::data",
+                                    "op": "load",
+                                    "type": "Array"
+                                },
+                                {
+                                    "access_path": [
+                                        {
+                                            "kind": "index",
+                                            "value": "j"
+                                        }
+                                    ],
+                                    "indices": [
+                                        "j"
+                                    ],
+                                    "name": "mean[j]",
+                                    "object": "global::mean",
+                                    "op": "load",
+                                    "type": "Array"
+                                },
+                                {
+                                    "access_path": [
+                                        {
+                                            "kind": "index",
+                                            "value": "j"
+                                        }
+                                    ],
+                                    "indices": [
+                                        "j"
+                                    ],
+                                    "name": "mean[j]",
+                                    "object": "global::mean",
+                                    "op": "store",
+                                    "type": "Array"
+                                }
+                            ],
+                            "bound": 30,
+                            "depth": 2,
+                            "start": 0,
+                            "type": "Loop",
+                            "var": "i"
+                        },
+                        {
+                            "access_path": [
+                                {
+                                    "kind": "index",
+                                    "value": "j"
+                                }
+                            ],
+                            "indices": [
+                                "j"
+                            ],
+                            "name": "mean[j]",
+                            "object": "global::mean",
+                            "op": "load",
+                            "type": "Array"
+                        },
+                        {
+                            "access_path": [
+                                {
+                                    "kind": "index",
+                                    "value": "j"
+                                }
+                            ],
+                            "indices": [
+                                "j"
+                            ],
+                            "name": "mean[j]",
+                            "object": "global::mean",
+                            "op": "store",
+                            "type": "Array"
+                        }
+                    ],
+                    "bound": 25,
+                    "depth": 1,
+                    "start": 0,
+                    "type": "Loop",
+                    "var": "j"
+                },
+                {
+                    "body": [
+                        {
+                            "access_path": [
+                                {
+                                    "kind": "index",
+                                    "value": "j"
+                                }
+                            ],
+                            "indices": [
+                                "j"
+                            ],
+                            "name": "stddev[j]",
+                            "object": "global::stddev",
+                            "op": "store",
+                            "type": "Array"
+                        },
+                        {
+                            "body": [
+                                {
+                                    "access_path": [
+                                        {
+                                            "kind": "index",
+                                            "value": "i"
+                                        },
+                                        {
+                                            "kind": "index",
+                                            "value": "j"
+                                        }
+                                    ],
+                                    "indices": [
+                                        "i",
+                                        "j"
+                                    ],
+                                    "name": "data[i][j]",
+                                    "object": "global::data",
+                                    "op": "load",
+                                    "type": "Array"
+                                },
+                                {
+                                    "access_path": [
+                                        {
+                                            "kind": "index",
+                                            "value": "j"
+                                        }
+                                    ],
+                                    "indices": [
+                                        "j"
+                                    ],
+                                    "name": "mean[j]",
+                                    "object": "global::mean",
+                                    "op": "load",
+                                    "type": "Array"
+                                },
+                                {
+                                    "access_path": [
+                                        {
+                                            "kind": "index",
+                                            "value": "i"
+                                        },
+                                        {
+                                            "kind": "index",
+                                            "value": "j"
+                                        }
+                                    ],
+                                    "indices": [
+                                        "i",
+                                        "j"
+                                    ],
+                                    "name": "data[i][j]",
+                                    "object": "global::data",
+                                    "op": "load",
+                                    "type": "Array"
+                                },
+                                {
+                                    "access_path": [
+                                        {
+                                            "kind": "index",
+                                            "value": "j"
+                                        }
+                                    ],
+                                    "indices": [
+                                        "j"
+                                    ],
+                                    "name": "mean[j]",
+                                    "object": "global::mean",
+                                    "op": "load",
+                                    "type": "Array"
+                                },
+                                {
+                                    "access_path": [
+                                        {
+                                            "kind": "index",
+                                            "value": "j"
+                                        }
+                                    ],
+                                    "indices": [
+                                        "j"
+                                    ],
+                                    "name": "stddev[j]",
+                                    "object": "global::stddev",
+                                    "op": "load",
+                                    "type": "Array"
+                                },
+                                {
+                                    "access_path": [
+                                        {
+                                            "kind": "index",
+                                            "value": "j"
+                                        }
+                                    ],
+                                    "indices": [
+                                        "j"
+                                    ],
+                                    "name": "stddev[j]",
+                                    "object": "global::stddev",
+                                    "op": "store",
+                                    "type": "Array"
+                                }
+                            ],
+                            "bound": 30,
+                            "depth": 2,
+                            "start": 0,
+                            "type": "Loop",
+                            "var": "i"
+                        },
+                        {
+                            "access_path": [
+                                {
+                                    "kind": "index",
+                                    "value": "j"
+                                }
+                            ],
+                            "indices": [
+                                "j"
+                            ],
+                            "name": "stddev[j]",
+                            "object": "global::stddev",
+                            "op": "load",
+                            "type": "Array"
+                        },
+                        {
+                            "access_path": [
+                                {
+                                    "kind": "index",
+                                    "value": "j"
+                                }
+                            ],
+                            "indices": [
+                                "j"
+                            ],
+                            "name": "stddev[j]",
+                            "object": "global::stddev",
+                            "op": "store",
+                            "type": "Array"
+                        },
+                        {
+                            "access_path": [
+                                {
+                                    "kind": "index",
+                                    "value": "j"
+                                }
+                            ],
+                            "indices": [
+                                "j"
+                            ],
+                            "name": "stddev[j]",
+                            "object": "global::stddev",
+                            "op": "load",
+                            "type": "Array"
+                        },
+                        {
+                            "access_path": [
+                                {
+                                    "kind": "index",
+                                    "value": "j"
+                                }
+                            ],
+                            "indices": [
+                                "j"
+                            ],
+                            "name": "stddev[j]",
+                            "object": "global::stddev",
+                            "op": "store",
+                            "type": "Array"
+                        },
+                        {
+                            "access_path": [
+                                {
+                                    "kind": "index",
+                                    "value": "j"
+                                }
+                            ],
+                            "indices": [
+                                "j"
+                            ],
+                            "name": "stddev[j]",
+                            "object": "global::stddev",
+                            "op": "load",
+                            "type": "Array"
+                        },
+                        {
+                            "access_path": [
+                                {
+                                    "kind": "index",
+                                    "value": "j"
+                                }
+                            ],
+                            "indices": [
+                                "j"
+                            ],
+                            "name": "stddev[j]",
+                            "object": "global::stddev",
+                            "op": "load",
+                            "type": "Array"
+                        },
+                        {
+                            "access_path": [
+                                {
+                                    "kind": "index",
+                                    "value": "j"
+                                }
+                            ],
+                            "indices": [
+                                "j"
+                            ],
+                            "name": "stddev[j]",
+                            "object": "global::stddev",
+                            "op": "store",
+                            "type": "Array"
+                        }
+                    ],
+                    "bound": 25,
+                    "depth": 1,
+                    "start": 0,
+                    "type": "Loop",
+                    "var": "j"
+                },
+                {
+                    "body": [
+                        {
+                            "body": [
+                                {
+                                    "access_path": [
+                                        {
+                                            "kind": "index",
+                                            "value": "j"
+                                        }
+                                    ],
+                                    "indices": [
+                                        "j"
+                                    ],
+                                    "name": "mean[j]",
+                                    "object": "global::mean",
+                                    "op": "load",
+                                    "type": "Array"
+                                },
+                                {
+                                    "access_path": [
+                                        {
+                                            "kind": "index",
+                                            "value": "i"
+                                        },
+                                        {
+                                            "kind": "index",
+                                            "value": "j"
+                                        }
+                                    ],
+                                    "indices": [
+                                        "i",
+                                        "j"
+                                    ],
+                                    "name": "data[i][j]",
+                                    "object": "global::data",
+                                    "op": "load",
+                                    "type": "Array"
+                                },
+                                {
+                                    "access_path": [
+                                        {
+                                            "kind": "index",
+                                            "value": "i"
+                                        },
+                                        {
+                                            "kind": "index",
+                                            "value": "j"
+                                        }
+                                    ],
+                                    "indices": [
+                                        "i",
+                                        "j"
+                                    ],
+                                    "name": "data[i][j]",
+                                    "object": "global::data",
+                                    "op": "store",
+                                    "type": "Array"
+                                },
+                                {
+                                    "access_path": [
+                                        {
+                                            "kind": "index",
+                                            "value": "j"
+                                        }
+                                    ],
+                                    "indices": [
+                                        "j"
+                                    ],
+                                    "name": "stddev[j]",
+                                    "object": "global::stddev",
+                                    "op": "load",
+                                    "type": "Array"
+                                },
+                                {
+                                    "access_path": [
+                                        {
+                                            "kind": "index",
+                                            "value": "i"
+                                        },
+                                        {
+                                            "kind": "index",
+                                            "value": "j"
+                                        }
+                                    ],
+                                    "indices": [
+                                        "i",
+                                        "j"
+                                    ],
+                                    "name": "data[i][j]",
+                                    "object": "global::data",
+                                    "op": "load",
+                                    "type": "Array"
+                                },
+                                {
+                                    "access_path": [
+                                        {
+                                            "kind": "index",
+                                            "value": "i"
+                                        },
+                                        {
+                                            "kind": "index",
+                                            "value": "j"
+                                        }
+                                    ],
+                                    "indices": [
+                                        "i",
+                                        "j"
+                                    ],
+                                    "name": "data[i][j]",
+                                    "object": "global::data",
+                                    "op": "store",
+                                    "type": "Array"
+                                }
+                            ],
+                            "bound": 25,
+                            "depth": 2,
+                            "start": 0,
+                            "type": "Loop",
+                            "var": "j"
+                        }
+                    ],
+                    "bound": 30,
+                    "depth": 1,
+                    "start": 0,
+                    "type": "Loop",
+                    "var": "i"
+                },
+                {
+                    "body": [
+                        {
+                            "body": [
+                                {
+                                    "access_path": [
+                                        {
+                                            "kind": "index",
+                                            "value": "i"
+                                        },
+                                        {
+                                            "kind": "index",
+                                            "value": "j"
+                                        }
+                                    ],
+                                    "indices": [
+                                        "i",
+                                        "j"
+                                    ],
+                                    "name": "corr[i][j]",
+                                    "object": "global::corr",
+                                    "op": "store",
+                                    "type": "Array"
+                                },
+                                {
+                                    "body": [
+                                        {
+                                            "access_path": [
+                                                {
+                                                    "kind": "index",
+                                                    "value": "k"
+                                                },
+                                                {
+                                                    "kind": "index",
+                                                    "value": "i"
+                                                }
+                                            ],
+                                            "indices": [
+                                                "k",
+                                                "i"
+                                            ],
+                                            "name": "data[k][i]",
+                                            "object": "global::data",
+                                            "op": "load",
+                                            "type": "Array"
+                                        },
+                                        {
+                                            "access_path": [
+                                                {
+                                                    "kind": "index",
+                                                    "value": "k"
+                                                },
+                                                {
+                                                    "kind": "index",
+                                                    "value": "j"
+                                                }
+                                            ],
+                                            "indices": [
+                                                "k",
+                                                "j"
+                                            ],
+                                            "name": "data[k][j]",
+                                            "object": "global::data",
+                                            "op": "load",
+                                            "type": "Array"
+                                        },
+                                        {
+                                            "access_path": [
+                                                {
+                                                    "kind": "index",
+                                                    "value": "i"
+                                                },
+                                                {
+                                                    "kind": "index",
+                                                    "value": "j"
+                                                }
+                                            ],
+                                            "indices": [
+                                                "i",
+                                                "j"
+                                            ],
+                                            "name": "corr[i][j]",
+                                            "object": "global::corr",
+                                            "op": "load",
+                                            "type": "Array"
+                                        },
+                                        {
+                                            "access_path": [
+                                                {
+                                                    "kind": "index",
+                                                    "value": "i"
+                                                },
+                                                {
+                                                    "kind": "index",
+                                                    "value": "j"
+                                                }
+                                            ],
+                                            "indices": [
+                                                "i",
+                                                "j"
+                                            ],
+                                            "name": "corr[i][j]",
+                                            "object": "global::corr",
+                                            "op": "store",
+                                            "type": "Array"
+                                        }
+                                    ],
+                                    "bound": 30,
+                                    "depth": 3,
+                                    "start": 0,
+                                    "type": "Loop",
+                                    "var": "k"
+                                },
+                                {
+                                    "access_path": [
+                                        {
+                                            "kind": "index",
+                                            "value": "i"
+                                        },
+                                        {
+                                            "kind": "index",
+                                            "value": "j"
+                                        }
+                                    ],
+                                    "indices": [
+                                        "i",
+                                        "j"
+                                    ],
+                                    "name": "corr[i][j]",
+                                    "object": "global::corr",
+                                    "op": "load",
+                                    "type": "Array"
+                                },
+                                {
+                                    "access_path": [
+                                        {
+                                            "kind": "index",
+                                            "value": "j"
+                                        },
+                                        {
+                                            "kind": "index",
+                                            "value": "i"
+                                        }
+                                    ],
+                                    "indices": [
+                                        "j",
+                                        "i"
+                                    ],
+                                    "name": "corr[j][i]",
+                                    "object": "global::corr",
+                                    "op": "store",
+                                    "type": "Array"
+                                }
+                            ],
+                            "bound": 25,
+                            "depth": 2,
+                            "start": 0,
+                            "type": "Loop",
+                            "var": "j"
+                        }
+                    ],
+                    "bound": 25,
+                    "depth": 1,
+                    "start": 0,
+                    "type": "Loop",
+                    "var": "i"
+                }
+            ],
+            "function": "correlation_kernel",
+            "params": []
+        }
+    ],
+    "metadata": {
+        "objects": {
+            "global::corr": {
+                "elem_size": 8,
+                "elem_type": "double",
+                "id": "global::corr",
+                "kind": "array",
+                "llvm_type": "[25 x [25 x double]]",
+                "name": "corr",
+                "scope": "global",
+                "shape": [
+                    25,
+                    25
+                ],
+                "storage": "global"
+            },
+            "global::data": {
+                "elem_size": 8,
+                "elem_type": "double",
+                "id": "global::data",
+                "kind": "array",
+                "llvm_type": "[30 x [25 x double]]",
+                "name": "data",
+                "scope": "global",
+                "shape": [
+                    30,
+                    25
+                ],
+                "storage": "global"
+            },
+            "global::mean": {
+                "elem_size": 8,
+                "elem_type": "double",
+                "id": "global::mean",
+                "kind": "array",
+                "llvm_type": "[25 x double]",
+                "name": "mean",
+                "scope": "global",
+                "shape": [
+                    25
+                ],
+                "storage": "global"
+            },
+            "global::stddev": {
+                "elem_size": 8,
+                "elem_type": "double",
+                "id": "global::stddev",
+                "kind": "array",
+                "llvm_type": "[25 x double]",
+                "name": "stddev",
+                "scope": "global",
+                "shape": [
+                    25
+                ],
+                "storage": "global"
+            }
+        },
+        "structs": {}
+    },
+    "schema_version": 2
+}

@@ -1,0 +1,1 @@
+{"functions":[{"annotations":["yard.analyze"],"body":[],"function":"unnamed_param","params":["arg0"]}],"metadata":{"objects":{"function:unnamed_param::param:arg0":{"elem_size":4,"elem_type":"i32","id":"function:unnamed_param::param:arg0","kind":"pointer","llvm_type":"i32*","name":"arg0","scope":"function:unnamed_param","storage":"param"}},"structs":{}},"schema_version":2}

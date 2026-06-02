@@ -1,0 +1,105 @@
+{
+    "functions": [
+        {
+            "annotations": [
+                "yard.analyze"
+            ],
+            "body": [
+                {
+                    "body": [
+                        {
+                            "body": [
+                                {
+                                    "access_path": [
+                                        {
+                                            "kind": "index",
+                                            "value": "i"
+                                        },
+                                        {
+                                            "kind": "index",
+                                            "value": "j"
+                                        }
+                                    ],
+                                    "indices": [
+                                        "i",
+                                        "j"
+                                    ],
+                                    "name": "B[i][j]",
+                                    "object": "global::B",
+                                    "op": "load",
+                                    "type": "Array"
+                                },
+                                {
+                                    "access_path": [
+                                        {
+                                            "kind": "index",
+                                            "value": "i"
+                                        },
+                                        {
+                                            "kind": "index",
+                                            "value": "j"
+                                        }
+                                    ],
+                                    "indices": [
+                                        "i",
+                                        "j"
+                                    ],
+                                    "name": "A[i][j]",
+                                    "object": "global::A",
+                                    "op": "store",
+                                    "type": "Array"
+                                }
+                            ],
+                            "bound": 200,
+                            "depth": 2,
+                            "start": 0,
+                            "type": "Loop",
+                            "var": "j"
+                        }
+                    ],
+                    "bound": 100,
+                    "depth": 1,
+                    "start": 0,
+                    "type": "Loop",
+                    "var": "i"
+                }
+            ],
+            "function": "loop_global",
+            "params": []
+        }
+    ],
+    "metadata": {
+        "objects": {
+            "global::A": {
+                "elem_size": 4,
+                "elem_type": "i32",
+                "id": "global::A",
+                "kind": "array",
+                "llvm_type": "[100 x [200 x i32]]",
+                "name": "A",
+                "scope": "global",
+                "shape": [
+                    100,
+                    200
+                ],
+                "storage": "global"
+            },
+            "global::B": {
+                "elem_size": 4,
+                "elem_type": "i32",
+                "id": "global::B",
+                "kind": "array",
+                "llvm_type": "[100 x [200 x i32]]",
+                "name": "B",
+                "scope": "global",
+                "shape": [
+                    100,
+                    200
+                ],
+                "storage": "global"
+            }
+        },
+        "structs": {}
+    },
+    "schema_version": 2
+}

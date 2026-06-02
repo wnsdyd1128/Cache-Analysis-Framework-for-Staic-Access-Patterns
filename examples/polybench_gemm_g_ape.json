@@ -1,0 +1,249 @@
+{
+    "functions": [
+        {
+            "annotations": [
+                "yard.analyze"
+            ],
+            "body": [
+                {
+                    "body": [
+                        {
+                            "body": [
+                                {
+                                    "access_path": [
+                                        {
+                                            "kind": "index",
+                                            "value": "i"
+                                        },
+                                        {
+                                            "kind": "index",
+                                            "value": "j"
+                                        }
+                                    ],
+                                    "indices": [
+                                        "i",
+                                        "j"
+                                    ],
+                                    "name": "C[i][j]",
+                                    "object": "global::C",
+                                    "op": "load",
+                                    "type": "Array"
+                                },
+                                {
+                                    "access_path": [
+                                        {
+                                            "kind": "index",
+                                            "value": "i"
+                                        },
+                                        {
+                                            "kind": "index",
+                                            "value": "j"
+                                        }
+                                    ],
+                                    "indices": [
+                                        "i",
+                                        "j"
+                                    ],
+                                    "name": "C[i][j]",
+                                    "object": "global::C",
+                                    "op": "store",
+                                    "type": "Array"
+                                }
+                            ],
+                            "bound": 20,
+                            "depth": 2,
+                            "start": 0,
+                            "type": "Loop",
+                            "var": "j"
+                        }
+                    ],
+                    "bound": 20,
+                    "depth": 1,
+                    "start": 0,
+                    "type": "Loop",
+                    "var": "i"
+                },
+                {
+                    "body": [
+                        {
+                            "body": [
+                                {
+                                    "body": [
+                                        {
+                                            "access_path": [
+                                                {
+                                                    "kind": "index",
+                                                    "value": "i"
+                                                },
+                                                {
+                                                    "kind": "index",
+                                                    "value": "k"
+                                                }
+                                            ],
+                                            "indices": [
+                                                "i",
+                                                "k"
+                                            ],
+                                            "name": "A[i][k]",
+                                            "object": "global::A",
+                                            "op": "load",
+                                            "type": "Array"
+                                        },
+                                        {
+                                            "access_path": [
+                                                {
+                                                    "kind": "index",
+                                                    "value": "k"
+                                                },
+                                                {
+                                                    "kind": "index",
+                                                    "value": "j"
+                                                }
+                                            ],
+                                            "indices": [
+                                                "k",
+                                                "j"
+                                            ],
+                                            "name": "B[k][j]",
+                                            "object": "global::B",
+                                            "op": "load",
+                                            "type": "Array"
+                                        },
+                                        {
+                                            "access_path": [
+                                                {
+                                                    "kind": "index",
+                                                    "value": "i"
+                                                },
+                                                {
+                                                    "kind": "index",
+                                                    "value": "j"
+                                                }
+                                            ],
+                                            "indices": [
+                                                "i",
+                                                "j"
+                                            ],
+                                            "name": "C[i][j]",
+                                            "object": "global::C",
+                                            "op": "load",
+                                            "type": "Array"
+                                        },
+                                        {
+                                            "access_path": [
+                                                {
+                                                    "kind": "index",
+                                                    "value": "i"
+                                                },
+                                                {
+                                                    "kind": "index",
+                                                    "value": "j"
+                                                }
+                                            ],
+                                            "indices": [
+                                                "i",
+                                                "j"
+                                            ],
+                                            "name": "C[i][j]",
+                                            "object": "global::C",
+                                            "op": "store",
+                                            "type": "Array"
+                                        }
+                                    ],
+                                    "bound": 20,
+                                    "depth": 3,
+                                    "start": 0,
+                                    "type": "Loop",
+                                    "var": "k"
+                                }
+                            ],
+                            "bound": 20,
+                            "depth": 2,
+                            "start": 0,
+                            "type": "Loop",
+                            "var": "j"
+                        }
+                    ],
+                    "bound": 20,
+                    "depth": 1,
+                    "start": 0,
+                    "type": "Loop",
+                    "var": "i"
+                }
+            ],
+            "function": "gemm_kernel",
+            "params": [
+                "alpha",
+                "beta"
+            ]
+        }
+    ],
+    "metadata": {
+        "objects": {
+            "function:gemm_kernel::param:alpha": {
+                "elem_size": 8,
+                "elem_type": "double",
+                "id": "function:gemm_kernel::param:alpha",
+                "kind": "scalar",
+                "llvm_type": "double",
+                "name": "alpha",
+                "scope": "function:gemm_kernel",
+                "storage": "param"
+            },
+            "function:gemm_kernel::param:beta": {
+                "elem_size": 8,
+                "elem_type": "double",
+                "id": "function:gemm_kernel::param:beta",
+                "kind": "scalar",
+                "llvm_type": "double",
+                "name": "beta",
+                "scope": "function:gemm_kernel",
+                "storage": "param"
+            },
+            "global::A": {
+                "elem_size": 8,
+                "elem_type": "double",
+                "id": "global::A",
+                "kind": "array",
+                "llvm_type": "[20 x [20 x double]]",
+                "name": "A",
+                "scope": "global",
+                "shape": [
+                    20,
+                    20
+                ],
+                "storage": "global"
+            },
+            "global::B": {
+                "elem_size": 8,
+                "elem_type": "double",
+                "id": "global::B",
+                "kind": "array",
+                "llvm_type": "[20 x [20 x double]]",
+                "name": "B",
+                "scope": "global",
+                "shape": [
+                    20,
+                    20
+                ],
+                "storage": "global"
+            },
+            "global::C": {
+                "elem_size": 8,
+                "elem_type": "double",
+                "id": "global::C",
+                "kind": "array",
+                "llvm_type": "[20 x [20 x double]]",
+                "name": "C",
+                "scope": "global",
+                "shape": [
+                    20,
+                    20
+                ],
+                "storage": "global"
+            }
+        },
+        "structs": {}
+    },
+    "schema_version": 2
+}

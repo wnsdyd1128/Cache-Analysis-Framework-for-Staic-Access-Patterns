@@ -1,0 +1,115 @@
+{
+    "functions": [
+        {
+            "annotations": [
+                "yard.inline"
+            ],
+            "body": [
+                {
+                    "access_path": [
+                        {
+                            "kind": "index",
+                            "value": "idx"
+                        }
+                    ],
+                    "indices": [
+                        "idx"
+                    ],
+                    "name": "x[idx]",
+                    "object": "function:touch::param:x",
+                    "op": "load",
+                    "type": "Array"
+                },
+                {
+                    "access_path": [
+                        {
+                            "kind": "index",
+                            "value": "idx"
+                        }
+                    ],
+                    "indices": [
+                        "idx"
+                    ],
+                    "name": "x[idx]",
+                    "object": "function:touch::param:x",
+                    "op": "store",
+                    "type": "Array"
+                }
+            ],
+            "function": "touch",
+            "params": [
+                "x",
+                "idx"
+            ]
+        },
+        {
+            "annotations": [
+                "yard.analyze"
+            ],
+            "body": [
+                {
+                    "body": [
+                        {
+                            "arg_objects": [
+                                "global::a",
+                                "i"
+                            ],
+                            "args": [
+                                "a",
+                                "i"
+                            ],
+                            "callee": "touch",
+                            "type": "Call"
+                        }
+                    ],
+                    "bound": 16,
+                    "depth": 1,
+                    "start": 0,
+                    "type": "Loop",
+                    "var": "i"
+                }
+            ],
+            "function": "call_kernel",
+            "params": []
+        }
+    ],
+    "metadata": {
+        "objects": {
+            "function:touch::param:idx": {
+                "elem_size": 4,
+                "elem_type": "i32",
+                "id": "function:touch::param:idx",
+                "kind": "scalar",
+                "llvm_type": "i32",
+                "name": "idx",
+                "scope": "function:touch",
+                "storage": "param"
+            },
+            "function:touch::param:x": {
+                "elem_size": 4,
+                "elem_type": "float",
+                "id": "function:touch::param:x",
+                "kind": "pointer",
+                "llvm_type": "float*",
+                "name": "x",
+                "scope": "function:touch",
+                "storage": "param"
+            },
+            "global::a": {
+                "elem_size": 4,
+                "elem_type": "float",
+                "id": "global::a",
+                "kind": "array",
+                "llvm_type": "[16 x float]",
+                "name": "a",
+                "scope": "global",
+                "shape": [
+                    16
+                ],
+                "storage": "global"
+            }
+        },
+        "structs": {}
+    },
+    "schema_version": 2
+}

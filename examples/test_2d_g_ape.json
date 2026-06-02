@@ -1,0 +1,105 @@
+{
+    "functions": [
+        {
+            "annotations": [
+                "yard.inline"
+            ],
+            "body": [
+                {
+                    "body": [
+                        {
+                            "body": [
+                                {
+                                    "access_path": [
+                                        {
+                                            "kind": "index",
+                                            "value": "i"
+                                        },
+                                        {
+                                            "kind": "index",
+                                            "value": "j"
+                                        }
+                                    ],
+                                    "indices": [
+                                        "i",
+                                        "j"
+                                    ],
+                                    "name": "A[i][j]",
+                                    "object": "function:loop_2d::param:A",
+                                    "op": "store",
+                                    "type": "Array"
+                                }
+                            ],
+                            "bound": 64,
+                            "depth": 2,
+                            "start": 0,
+                            "type": "Loop",
+                            "var": "j"
+                        }
+                    ],
+                    "bound": 64,
+                    "depth": 1,
+                    "start": 0,
+                    "type": "Loop",
+                    "var": "i"
+                }
+            ],
+            "function": "loop_2d",
+            "params": [
+                "A"
+            ]
+        },
+        {
+            "annotations": [
+                "yard.analyze"
+            ],
+            "body": [
+                {
+                    "arg_objects": [
+                        "global::A"
+                    ],
+                    "args": [
+                        "A"
+                    ],
+                    "callee": "loop_2d",
+                    "type": "Call"
+                }
+            ],
+            "function": "loop_2d_kernel",
+            "params": []
+        }
+    ],
+    "metadata": {
+        "objects": {
+            "function:loop_2d::param:A": {
+                "elem_size": 4,
+                "elem_type": "i32",
+                "id": "function:loop_2d::param:A",
+                "kind": "pointer",
+                "llvm_type": "[64 x i32]*",
+                "name": "A",
+                "scope": "function:loop_2d",
+                "shape": [
+                    64
+                ],
+                "storage": "param"
+            },
+            "global::A": {
+                "elem_size": 4,
+                "elem_type": "i32",
+                "id": "global::A",
+                "kind": "array",
+                "llvm_type": "[64 x [64 x i32]]",
+                "name": "A",
+                "scope": "global",
+                "shape": [
+                    64,
+                    64
+                ],
+                "storage": "global"
+            }
+        },
+        "structs": {}
+    },
+    "schema_version": 2
+}

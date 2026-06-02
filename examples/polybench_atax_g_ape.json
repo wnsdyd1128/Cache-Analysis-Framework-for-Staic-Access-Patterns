@@ -1,0 +1,268 @@
+{
+    "functions": [
+        {
+            "annotations": [
+                "yard.analyze"
+            ],
+            "body": [
+                {
+                    "body": [
+                        {
+                            "access_path": [
+                                {
+                                    "kind": "index",
+                                    "value": "i"
+                                }
+                            ],
+                            "indices": [
+                                "i"
+                            ],
+                            "name": "y[i]",
+                            "object": "global::y",
+                            "op": "store",
+                            "type": "Array"
+                        }
+                    ],
+                    "bound": 70,
+                    "depth": 1,
+                    "start": 0,
+                    "type": "Loop",
+                    "var": "i"
+                },
+                {
+                    "body": [
+                        {
+                            "access_path": [
+                                {
+                                    "kind": "index",
+                                    "value": "i"
+                                }
+                            ],
+                            "indices": [
+                                "i"
+                            ],
+                            "name": "tmp[i]",
+                            "object": "global::tmp",
+                            "op": "store",
+                            "type": "Array"
+                        },
+                        {
+                            "body": [
+                                {
+                                    "access_path": [
+                                        {
+                                            "kind": "index",
+                                            "value": "i"
+                                        }
+                                    ],
+                                    "indices": [
+                                        "i"
+                                    ],
+                                    "name": "tmp[i]",
+                                    "object": "global::tmp",
+                                    "op": "load",
+                                    "type": "Array"
+                                },
+                                {
+                                    "access_path": [
+                                        {
+                                            "kind": "index",
+                                            "value": "i"
+                                        },
+                                        {
+                                            "kind": "index",
+                                            "value": "j"
+                                        }
+                                    ],
+                                    "indices": [
+                                        "i",
+                                        "j"
+                                    ],
+                                    "name": "A[i][j]",
+                                    "object": "global::A",
+                                    "op": "load",
+                                    "type": "Array"
+                                },
+                                {
+                                    "access_path": [
+                                        {
+                                            "kind": "index",
+                                            "value": "j"
+                                        }
+                                    ],
+                                    "indices": [
+                                        "j"
+                                    ],
+                                    "name": "x[j]",
+                                    "object": "global::x",
+                                    "op": "load",
+                                    "type": "Array"
+                                },
+                                {
+                                    "access_path": [
+                                        {
+                                            "kind": "index",
+                                            "value": "i"
+                                        }
+                                    ],
+                                    "indices": [
+                                        "i"
+                                    ],
+                                    "name": "tmp[i]",
+                                    "object": "global::tmp",
+                                    "op": "store",
+                                    "type": "Array"
+                                }
+                            ],
+                            "bound": 70,
+                            "depth": 2,
+                            "start": 0,
+                            "type": "Loop",
+                            "var": "j"
+                        },
+                        {
+                            "body": [
+                                {
+                                    "access_path": [
+                                        {
+                                            "kind": "index",
+                                            "value": "j"
+                                        }
+                                    ],
+                                    "indices": [
+                                        "j"
+                                    ],
+                                    "name": "y[j]",
+                                    "object": "global::y",
+                                    "op": "load",
+                                    "type": "Array"
+                                },
+                                {
+                                    "access_path": [
+                                        {
+                                            "kind": "index",
+                                            "value": "i"
+                                        },
+                                        {
+                                            "kind": "index",
+                                            "value": "j"
+                                        }
+                                    ],
+                                    "indices": [
+                                        "i",
+                                        "j"
+                                    ],
+                                    "name": "A[i][j]",
+                                    "object": "global::A",
+                                    "op": "load",
+                                    "type": "Array"
+                                },
+                                {
+                                    "access_path": [
+                                        {
+                                            "kind": "index",
+                                            "value": "i"
+                                        }
+                                    ],
+                                    "indices": [
+                                        "i"
+                                    ],
+                                    "name": "tmp[i]",
+                                    "object": "global::tmp",
+                                    "op": "load",
+                                    "type": "Array"
+                                },
+                                {
+                                    "access_path": [
+                                        {
+                                            "kind": "index",
+                                            "value": "j"
+                                        }
+                                    ],
+                                    "indices": [
+                                        "j"
+                                    ],
+                                    "name": "y[j]",
+                                    "object": "global::y",
+                                    "op": "store",
+                                    "type": "Array"
+                                }
+                            ],
+                            "bound": 70,
+                            "depth": 2,
+                            "start": 0,
+                            "type": "Loop",
+                            "var": "j"
+                        }
+                    ],
+                    "bound": 150,
+                    "depth": 1,
+                    "start": 0,
+                    "type": "Loop",
+                    "var": "i"
+                }
+            ],
+            "function": "atax_kernel",
+            "params": []
+        }
+    ],
+    "metadata": {
+        "objects": {
+            "global::A": {
+                "elem_size": 8,
+                "elem_type": "double",
+                "id": "global::A",
+                "kind": "array",
+                "llvm_type": "[150 x [70 x double]]",
+                "name": "A",
+                "scope": "global",
+                "shape": [
+                    150,
+                    70
+                ],
+                "storage": "global"
+            },
+            "global::tmp": {
+                "elem_size": 8,
+                "elem_type": "double",
+                "id": "global::tmp",
+                "kind": "array",
+                "llvm_type": "[150 x double]",
+                "name": "tmp",
+                "scope": "global",
+                "shape": [
+                    150
+                ],
+                "storage": "global"
+            },
+            "global::x": {
+                "elem_size": 8,
+                "elem_type": "double",
+                "id": "global::x",
+                "kind": "array",
+                "llvm_type": "[70 x double]",
+                "name": "x",
+                "scope": "global",
+                "shape": [
+                    70
+                ],
+                "storage": "global"
+            },
+            "global::y": {
+                "elem_size": 8,
+                "elem_type": "double",
+                "id": "global::y",
+                "kind": "array",
+                "llvm_type": "[70 x double]",
+                "name": "y",
+                "scope": "global",
+                "shape": [
+                    70
+                ],
+                "storage": "global"
+            }
+        },
+        "structs": {}
+    },
+    "schema_version": 2
+}

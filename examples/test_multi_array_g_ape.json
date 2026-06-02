@@ -1,0 +1,182 @@
+{
+    "functions": [
+        {
+            "annotations": [
+                "yard.inline"
+            ],
+            "body": [
+                {
+                    "body": [
+                        {
+                            "access_path": [
+                                {
+                                    "kind": "index",
+                                    "value": "i"
+                                }
+                            ],
+                            "indices": [
+                                "i"
+                            ],
+                            "name": "B[i]",
+                            "object": "function:saxpy::param:B",
+                            "op": "load",
+                            "type": "Array"
+                        },
+                        {
+                            "access_path": [
+                                {
+                                    "kind": "index",
+                                    "value": "i"
+                                }
+                            ],
+                            "indices": [
+                                "i"
+                            ],
+                            "name": "C[i]",
+                            "object": "function:saxpy::param:C",
+                            "op": "load",
+                            "type": "Array"
+                        },
+                        {
+                            "access_path": [
+                                {
+                                    "kind": "index",
+                                    "value": "i"
+                                }
+                            ],
+                            "indices": [
+                                "i"
+                            ],
+                            "name": "A[i]",
+                            "object": "function:saxpy::param:A",
+                            "op": "store",
+                            "type": "Array"
+                        }
+                    ],
+                    "bound": 200,
+                    "depth": 1,
+                    "start": 0,
+                    "type": "Loop",
+                    "var": "i"
+                }
+            ],
+            "function": "saxpy",
+            "params": [
+                "A",
+                "B",
+                "C",
+                "s"
+            ]
+        },
+        {
+            "annotations": [
+                "yard.analyze"
+            ],
+            "body": [
+                {
+                    "arg_objects": [
+                        "global::A",
+                        "global::B",
+                        "global::C",
+                        "2.000000e+00"
+                    ],
+                    "args": [
+                        "A",
+                        "B",
+                        "C",
+                        "2.000000e+00"
+                    ],
+                    "callee": "saxpy",
+                    "type": "Call"
+                }
+            ],
+            "function": "saxpy_kernel",
+            "params": []
+        }
+    ],
+    "metadata": {
+        "objects": {
+            "function:saxpy::param:A": {
+                "elem_size": 4,
+                "elem_type": "float",
+                "id": "function:saxpy::param:A",
+                "kind": "pointer",
+                "llvm_type": "float*",
+                "name": "A",
+                "scope": "function:saxpy",
+                "storage": "param"
+            },
+            "function:saxpy::param:B": {
+                "elem_size": 4,
+                "elem_type": "float",
+                "id": "function:saxpy::param:B",
+                "kind": "pointer",
+                "llvm_type": "float*",
+                "name": "B",
+                "scope": "function:saxpy",
+                "storage": "param"
+            },
+            "function:saxpy::param:C": {
+                "elem_size": 4,
+                "elem_type": "float",
+                "id": "function:saxpy::param:C",
+                "kind": "pointer",
+                "llvm_type": "float*",
+                "name": "C",
+                "scope": "function:saxpy",
+                "storage": "param"
+            },
+            "function:saxpy::param:s": {
+                "elem_size": 4,
+                "elem_type": "float",
+                "id": "function:saxpy::param:s",
+                "kind": "scalar",
+                "llvm_type": "float",
+                "name": "s",
+                "scope": "function:saxpy",
+                "storage": "param"
+            },
+            "global::A": {
+                "elem_size": 4,
+                "elem_type": "float",
+                "id": "global::A",
+                "kind": "array",
+                "llvm_type": "[200 x float]",
+                "name": "A",
+                "scope": "global",
+                "shape": [
+                    200
+                ],
+                "storage": "global"
+            },
+            "global::B": {
+                "elem_size": 4,
+                "elem_type": "float",
+                "id": "global::B",
+                "kind": "array",
+                "llvm_type": "[200 x float]",
+                "name": "B",
+                "scope": "global",
+                "shape": [
+                    200
+                ],
+                "storage": "global"
+            },
+            "global::C": {
+                "elem_size": 4,
+                "elem_type": "float",
+                "id": "global::C",
+                "kind": "array",
+                "llvm_type": "[200 x float]",
+                "name": "C",
+                "scope": "global",
+                "shape": [
+                    200
+                ],
+                "storage": "global"
+            }
+        },
+        "structs": {}
+    },
+    "schema_version": 2
+}

@@ -1,0 +1,332 @@
+{
+    "functions": [
+        {
+            "annotations": [
+                "yard.analyze"
+            ],
+            "body": [
+                {
+                    "body": [
+                        {
+                            "body": [
+                                {
+                                    "body": [
+                                        {
+                                            "access_path": [
+                                                {
+                                                    "kind": "index",
+                                                    "value": "i"
+                                                },
+                                                {
+                                                    "kind": "index",
+                                                    "value": "j"
+                                                }
+                                            ],
+                                            "indices": [
+                                                "i",
+                                                "j"
+                                            ],
+                                            "name": "A[i][j]",
+                                            "object": "global::A",
+                                            "op": "load",
+                                            "type": "Array"
+                                        },
+                                        {
+                                            "access_path": [
+                                                {
+                                                    "kind": "index",
+                                                    "value": "i"
+                                                },
+                                                {
+                                                    "kind": "index",
+                                                    "value": "j-1"
+                                                }
+                                            ],
+                                            "indices": [
+                                                "i",
+                                                "j-1"
+                                            ],
+                                            "name": "A[i][j-1]",
+                                            "object": "global::A",
+                                            "op": "load",
+                                            "type": "Array"
+                                        },
+                                        {
+                                            "access_path": [
+                                                {
+                                                    "kind": "index",
+                                                    "value": "i"
+                                                },
+                                                {
+                                                    "kind": "index",
+                                                    "value": "j+1"
+                                                }
+                                            ],
+                                            "indices": [
+                                                "i",
+                                                "j+1"
+                                            ],
+                                            "name": "A[i][j+1]",
+                                            "object": "global::A",
+                                            "op": "load",
+                                            "type": "Array"
+                                        },
+                                        {
+                                            "access_path": [
+                                                {
+                                                    "kind": "index",
+                                                    "value": "i-1"
+                                                },
+                                                {
+                                                    "kind": "index",
+                                                    "value": "j"
+                                                }
+                                            ],
+                                            "indices": [
+                                                "i-1",
+                                                "j"
+                                            ],
+                                            "name": "A[i-1][j]",
+                                            "object": "global::A",
+                                            "op": "load",
+                                            "type": "Array"
+                                        },
+                                        {
+                                            "access_path": [
+                                                {
+                                                    "kind": "index",
+                                                    "value": "i+1"
+                                                },
+                                                {
+                                                    "kind": "index",
+                                                    "value": "j"
+                                                }
+                                            ],
+                                            "indices": [
+                                                "i+1",
+                                                "j"
+                                            ],
+                                            "name": "A[i+1][j]",
+                                            "object": "global::A",
+                                            "op": "load",
+                                            "type": "Array"
+                                        },
+                                        {
+                                            "access_path": [
+                                                {
+                                                    "kind": "index",
+                                                    "value": "i"
+                                                },
+                                                {
+                                                    "kind": "index",
+                                                    "value": "j"
+                                                }
+                                            ],
+                                            "indices": [
+                                                "i",
+                                                "j"
+                                            ],
+                                            "name": "B[i][j]",
+                                            "object": "global::B",
+                                            "op": "store",
+                                            "type": "Array"
+                                        }
+                                    ],
+                                    "bound": 39,
+                                    "depth": 3,
+                                    "start": 1,
+                                    "type": "Loop",
+                                    "var": "j"
+                                }
+                            ],
+                            "bound": 39,
+                            "depth": 2,
+                            "start": 1,
+                            "type": "Loop",
+                            "var": "i"
+                        },
+                        {
+                            "body": [
+                                {
+                                    "body": [
+                                        {
+                                            "access_path": [
+                                                {
+                                                    "kind": "index",
+                                                    "value": "i"
+                                                },
+                                                {
+                                                    "kind": "index",
+                                                    "value": "j"
+                                                }
+                                            ],
+                                            "indices": [
+                                                "i",
+                                                "j"
+                                            ],
+                                            "name": "B[i][j]",
+                                            "object": "global::B",
+                                            "op": "load",
+                                            "type": "Array"
+                                        },
+                                        {
+                                            "access_path": [
+                                                {
+                                                    "kind": "index",
+                                                    "value": "i"
+                                                },
+                                                {
+                                                    "kind": "index",
+                                                    "value": "j-1"
+                                                }
+                                            ],
+                                            "indices": [
+                                                "i",
+                                                "j-1"
+                                            ],
+                                            "name": "B[i][j-1]",
+                                            "object": "global::B",
+                                            "op": "load",
+                                            "type": "Array"
+                                        },
+                                        {
+                                            "access_path": [
+                                                {
+                                                    "kind": "index",
+                                                    "value": "i"
+                                                },
+                                                {
+                                                    "kind": "index",
+                                                    "value": "j+1"
+                                                }
+                                            ],
+                                            "indices": [
+                                                "i",
+                                                "j+1"
+                                            ],
+                                            "name": "B[i][j+1]",
+                                            "object": "global::B",
+                                            "op": "load",
+                                            "type": "Array"
+                                        },
+                                        {
+                                            "access_path": [
+                                                {
+                                                    "kind": "index",
+                                                    "value": "i-1"
+                                                },
+                                                {
+                                                    "kind": "index",
+                                                    "value": "j"
+                                                }
+                                            ],
+                                            "indices": [
+                                                "i-1",
+                                                "j"
+                                            ],
+                                            "name": "B[i-1][j]",
+                                            "object": "global::B",
+                                            "op": "load",
+                                            "type": "Array"
+                                        },
+                                        {
+                                            "access_path": [
+                                                {
+                                                    "kind": "index",
+                                                    "value": "i+1"
+                                                },
+                                                {
+                                                    "kind": "index",
+                                                    "value": "j"
+                                                }
+                                            ],
+                                            "indices": [
+                                                "i+1",
+                                                "j"
+                                            ],
+                                            "name": "B[i+1][j]",
+                                            "object": "global::B",
+                                            "op": "load",
+                                            "type": "Array"
+                                        },
+                                        {
+                                            "access_path": [
+                                                {
+                                                    "kind": "index",
+                                                    "value": "i"
+                                                },
+                                                {
+                                                    "kind": "index",
+                                                    "value": "j"
+                                                }
+                                            ],
+                                            "indices": [
+                                                "i",
+                                                "j"
+                                            ],
+                                            "name": "A[i][j]",
+                                            "object": "global::A",
+                                            "op": "store",
+                                            "type": "Array"
+                                        }
+                                    ],
+                                    "bound": 39,
+                                    "depth": 3,
+                                    "start": 1,
+                                    "type": "Loop",
+                                    "var": "j"
+                                }
+                            ],
+                            "bound": 39,
+                            "depth": 2,
+                            "start": 1,
+                            "type": "Loop",
+                            "var": "i"
+                        }
+                    ],
+                    "bound": 5,
+                    "depth": 1,
+                    "start": 0,
+                    "type": "Loop",
+                    "var": "t"
+                }
+            ],
+            "function": "jacobi_2d_kernel",
+            "params": []
+        }
+    ],
+    "metadata": {
+        "objects": {
+            "global::A": {
+                "elem_size": 8,
+                "elem_type": "double",
+                "id": "global::A",
+                "kind": "array",
+                "llvm_type": "[40 x [40 x double]]",
+                "name": "A",
+                "scope": "global",
+                "shape": [
+                    40,
+                    40
+                ],
+                "storage": "global"
+            },
+            "global::B": {
+                "elem_size": 8,
+                "elem_type": "double",
+                "id": "global::B",
+                "kind": "array",
+                "llvm_type": "[40 x [40 x double]]",
+                "name": "B",
+                "scope": "global",
+                "shape": [
+                    40,
+                    40
+                ],
+                "storage": "global"
+            }
+        },
+        "structs": {}
+    },
+    "schema_version": 2
+}

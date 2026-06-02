@@ -1,0 +1,56 @@
+{
+    "functions": [
+        {
+            "annotations": [
+                "yard.analyze"
+            ],
+            "body": [
+                {
+                    "body": [
+                        {
+                            "access_path": [
+                                {
+                                    "kind": "index",
+                                    "value": "i"
+                                }
+                            ],
+                            "indices": [
+                                "i"
+                            ],
+                            "name": "A[i]",
+                            "object": "global::A",
+                            "op": "store",
+                            "type": "Array"
+                        }
+                    ],
+                    "bound": 50,
+                    "depth": 1,
+                    "start": 0,
+                    "type": "Loop",
+                    "var": "i"
+                }
+            ],
+            "function": "test_constatnt_variable",
+            "params": []
+        }
+    ],
+    "metadata": {
+        "objects": {
+            "global::A": {
+                "elem_size": 4,
+                "elem_type": "i32",
+                "id": "global::A",
+                "kind": "array",
+                "llvm_type": "[100 x i32]",
+                "name": "A",
+                "scope": "global",
+                "shape": [
+                    100
+                ],
+                "storage": "global"
+            }
+        },
+        "structs": {}
+    },
+    "schema_version": 2
+}

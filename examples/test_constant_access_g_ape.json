@@ -1,0 +1,152 @@
+{
+    "functions": [
+        {
+            "annotations": [
+                "yard.analyze"
+            ],
+            "body": [
+                {
+                    "access_path": [
+                        {
+                            "kind": "index",
+                            "value": "0"
+                        }
+                    ],
+                    "indices": [
+                        "0"
+                    ],
+                    "name": "array[0]",
+                    "object": "global::array",
+                    "op": "store",
+                    "type": "Array"
+                },
+                {
+                    "access_path": [
+                        {
+                            "kind": "index",
+                            "value": "1"
+                        }
+                    ],
+                    "indices": [
+                        "1"
+                    ],
+                    "name": "array[1]",
+                    "object": "global::array",
+                    "op": "store",
+                    "type": "Array"
+                },
+                {
+                    "access_path": [
+                        {
+                            "kind": "index",
+                            "value": "0"
+                        }
+                    ],
+                    "indices": [
+                        "0"
+                    ],
+                    "name": "array[0]",
+                    "object": "global::array",
+                    "op": "store",
+                    "type": "Array"
+                },
+                {
+                    "access_path": [
+                        {
+                            "kind": "index",
+                            "value": "2"
+                        }
+                    ],
+                    "indices": [
+                        "2"
+                    ],
+                    "name": "array[2]",
+                    "object": "global::array",
+                    "op": "store",
+                    "type": "Array"
+                },
+                {
+                    "access_path": [
+                        {
+                            "kind": "index",
+                            "value": "3"
+                        }
+                    ],
+                    "indices": [
+                        "3"
+                    ],
+                    "name": "array[3]",
+                    "object": "global::array",
+                    "op": "store",
+                    "type": "Array"
+                },
+                {
+                    "access_path": [
+                        {
+                            "kind": "index",
+                            "value": "4"
+                        }
+                    ],
+                    "indices": [
+                        "4"
+                    ],
+                    "name": "array[4]",
+                    "object": "global::array",
+                    "op": "store",
+                    "type": "Array"
+                },
+                {
+                    "access_path": [
+                        {
+                            "kind": "index",
+                            "value": "5"
+                        }
+                    ],
+                    "indices": [
+                        "5"
+                    ],
+                    "name": "array[5]",
+                    "object": "global::array",
+                    "op": "store",
+                    "type": "Array"
+                },
+                {
+                    "access_path": [
+                        {
+                            "kind": "index",
+                            "value": "1"
+                        }
+                    ],
+                    "indices": [
+                        "1"
+                    ],
+                    "name": "array[1]",
+                    "object": "global::array",
+                    "op": "store",
+                    "type": "Array"
+                }
+            ],
+            "function": "random_access_with_constant_index",
+            "params": []
+        }
+    ],
+    "metadata": {
+        "objects": {
+            "global::array": {
+                "elem_size": 4,
+                "elem_type": "i32",
+                "id": "global::array",
+                "kind": "array",
+                "llvm_type": "[100 x i32]",
+                "name": "array",
+                "scope": "global",
+                "shape": [
+                    100
+                ],
+                "storage": "global"
+            }
+        },
+        "structs": {}
+    },
+    "schema_version": 2
+}

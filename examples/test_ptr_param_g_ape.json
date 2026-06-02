@@ -1,0 +1,173 @@
+{
+    "functions": [
+        {
+            "annotations": [
+                "yard.inline"
+            ],
+            "body": [
+                {
+                    "access_path": [
+                        {
+                            "kind": "index",
+                            "value": "idx"
+                        }
+                    ],
+                    "indices": [
+                        "idx"
+                    ],
+                    "name": "ptr[idx]",
+                    "object": "function:test_ptr_param_kernel::param:ptr",
+                    "op": "store",
+                    "type": "Array"
+                }
+            ],
+            "function": "test_ptr_param_kernel",
+            "params": [
+                "ptr",
+                "idx"
+            ]
+        },
+        {
+            "annotations": [
+                "yard.analyze"
+            ],
+            "body": [
+                {
+                    "access_path": [
+                        {
+                            "kind": "index",
+                            "value": "0"
+                        }
+                    ],
+                    "indices": [
+                        "0"
+                    ],
+                    "name": "B[0]",
+                    "object": "global::B",
+                    "op": "store",
+                    "type": "Array"
+                },
+                {
+                    "body": [
+                        {
+                            "arg_objects": [
+                                "global::A",
+                                "i"
+                            ],
+                            "args": [
+                                "A",
+                                "i"
+                            ],
+                            "callee": "test_ptr_param_kernel",
+                            "type": "Call"
+                        }
+                    ],
+                    "bound": 50,
+                    "depth": 1,
+                    "start": 0,
+                    "type": "Loop",
+                    "var": "i"
+                },
+                {
+                    "access_path": [
+                        {
+                            "kind": "index",
+                            "value": "8"
+                        }
+                    ],
+                    "indices": [
+                        "8"
+                    ],
+                    "name": "B[8]",
+                    "object": "global::B",
+                    "op": "store",
+                    "type": "Array"
+                },
+                {
+                    "access_path": [
+                        {
+                            "kind": "index",
+                            "value": "7"
+                        }
+                    ],
+                    "indices": [
+                        "7"
+                    ],
+                    "name": "B[7]",
+                    "object": "global::B",
+                    "op": "store",
+                    "type": "Array"
+                },
+                {
+                    "access_path": [
+                        {
+                            "kind": "index",
+                            "value": "8"
+                        }
+                    ],
+                    "indices": [
+                        "8"
+                    ],
+                    "name": "B[8]",
+                    "object": "global::B",
+                    "op": "store",
+                    "type": "Array"
+                }
+            ],
+            "function": "test_ptr_param",
+            "params": []
+        }
+    ],
+    "metadata": {
+        "objects": {
+            "function:test_ptr_param_kernel::param:idx": {
+                "elem_size": 4,
+                "elem_type": "i32",
+                "id": "function:test_ptr_param_kernel::param:idx",
+                "kind": "scalar",
+                "llvm_type": "i32",
+                "name": "idx",
+                "scope": "function:test_ptr_param_kernel",
+                "storage": "param"
+            },
+            "function:test_ptr_param_kernel::param:ptr": {
+                "elem_size": 4,
+                "elem_type": "i32",
+                "id": "function:test_ptr_param_kernel::param:ptr",
+                "kind": "pointer",
+                "llvm_type": "i32*",
+                "name": "ptr",
+                "scope": "function:test_ptr_param_kernel",
+                "storage": "param"
+            },
+            "global::A": {
+                "elem_size": 4,
+                "elem_type": "i32",
+                "id": "global::A",
+                "kind": "array",
+                "llvm_type": "[100 x i32]",
+                "name": "A",
+                "scope": "global",
+                "shape": [
+                    100
+                ],
+                "storage": "global"
+            },
+            "global::B": {
+                "elem_size": 4,
+                "elem_type": "i32",
+                "id": "global::B",
+                "kind": "array",
+                "llvm_type": "[9 x i32]",
+                "name": "B",
+                "scope": "global",
+                "shape": [
+                    9
+                ],
+                "storage": "global"
+            }
+        },
+        "structs": {}
+    },
+    "schema_version": 2
+}

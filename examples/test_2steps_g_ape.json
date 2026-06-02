@@ -1,0 +1,87 @@
+{
+    "functions": [
+        {
+            "annotations": [
+                "yard.inline"
+            ],
+            "body": [
+                {
+                    "body": [
+                        {
+                            "access_path": [
+                                {
+                                    "kind": "index",
+                                    "value": "i"
+                                }
+                            ],
+                            "indices": [
+                                "i"
+                            ],
+                            "name": "arr[i]",
+                            "object": "function:loop_1d::param:arr",
+                            "op": "store",
+                            "type": "Array"
+                        }
+                    ],
+                    "bound": 100,
+                    "depth": 1,
+                    "start": 0,
+                    "type": "Loop",
+                    "var": "i"
+                }
+            ],
+            "function": "loop_1d",
+            "params": [
+                "arr"
+            ]
+        },
+        {
+            "annotations": [
+                "yard.analyze"
+            ],
+            "body": [
+                {
+                    "arg_objects": [
+                        "global::arr"
+                    ],
+                    "args": [
+                        "arr"
+                    ],
+                    "callee": "loop_1d",
+                    "type": "Call"
+                }
+            ],
+            "function": "loop_1d_kernel",
+            "params": []
+        }
+    ],
+    "metadata": {
+        "objects": {
+            "function:loop_1d::param:arr": {
+                "elem_size": 4,
+                "elem_type": "i32",
+                "id": "function:loop_1d::param:arr",
+                "kind": "pointer",
+                "llvm_type": "i32*",
+                "name": "arr",
+                "scope": "function:loop_1d",
+                "storage": "param"
+            },
+            "global::arr": {
+                "elem_size": 4,
+                "elem_type": "i32",
+                "id": "global::arr",
+                "kind": "array",
+                "llvm_type": "[100 x i32]",
+                "name": "arr",
+                "scope": "global",
+                "shape": [
+                    100
+                ],
+                "storage": "global"
+            }
+        },
+        "structs": {}
+    },
+    "schema_version": 2
+}
