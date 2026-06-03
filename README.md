@@ -62,7 +62,7 @@ fallback이며, 정식 실행 경로에서는 항상 line_size가 주입된다.)
 
 ## 기능
 
-- AP JSON → AccessEvent 선형 스트림 복원 (루프 언롤, 함수 call expansion)
+- AP JSON → AccessEvent 선형 스트림 복원 (루프 언롤, call 인라이닝 + 인자 바인딩)
 - YAML 기반 캐시 계층 설정 (`cache.yaml`) — private L1 × N + shared L2 + Memory
 - LRU replacement, write-back / write-through 정책
 - cold / capacity / conflict miss 분류
@@ -225,8 +225,7 @@ Rank  Loop    Access       Miss%  Share  Miss Type   Hint
 |------|------|
 | `sweep` 모드 | 미구현 — `run`만 제공 |
 | AMAT / delay 출력 | 미구현 — 현재 출력은 miss 개수만. `cache.yaml`의 `delay_cycles`는 시뮬레이션에 쓰이나 리포트에 노출 안 됨 |
-| 함수 간 call 인자 바인딩 | callee param↔실인자 치환 미지원 → 인라인 헬퍼가 param으로 인덱싱하면 오류/오귀속. 인자 바인딩 인라이닝 예정 (예: `examples/test_call`) |
-| 포인터-param 다차원 size | 객체 전체 크기 과소추정 → 다객체 spacing 부정확 (call 인자 바인딩으로 대부분 해소 예정) |
+| 포인터-param 직접 접근 (무호출) | `yard.analyze` root가 포인터 param을 직접 인덱싱하고 호출자가 없으면 바깥 차원을 알 수 없어 객체 크기 과소추정. 호출자가 전역/로컬 배열을 넘기는 경우(현재 샘플)는 call 인자 바인딩으로 해소됨 |
 | CLI `--output` 디렉터리 | 자동 생성 안 함 — 디렉터리를 미리 만들어야 출력됨 |
 | 멀티코어 | 설정은 가능하나 통합 검증은 단일 코어 기준 |
 
