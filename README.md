@@ -69,7 +69,7 @@ fallback이며, 정식 실행 경로에서는 항상 line_size가 주입된다.)
 - **귀속 단위:** benchmark / function · core · region · loop · memory object · access site · load/store
 - inclusive / exclusive Region 집계
 - rule-based 최적화 진단 (padding, blocking, loop interchange 힌트)
-- 출력: `summary.csv`, `summary.json`, `diagnostics.md`, 계층별 breakdown CSV
+- 출력: 입력명 기반 `<name>.csv`/`.json` (miss 분류 + L1/L2 hit율 + cycle 통계), `<name>_diagnostics.md`, `<name>_objects.csv`
 
 ---
 
@@ -127,8 +127,8 @@ apex-cache run input_g_ape.json --cache cache.yaml [--output results/]
 apex-cache sweep input_g_ape.json --cache cache.yaml --l1-sizes 4K,8K,16K,32K
 ```
 
-`run`은 `--output`(기본 `results/`)에 `summary.csv`, `summary.json`,
-`diagnostics.md`, `object_breakdown.csv`를 생성한다.
+`run`은 `--output`(기본 `results/`, 없으면 자동 생성)에 입력 파일명 기반으로
+`<name>.csv`, `<name>.json`, `<name>_diagnostics.md`, `<name>_objects.csv`를 생성한다.
 
 ### 설정 파일
 
@@ -184,24 +184,39 @@ mappings:
 
 ---
 
-## 출력 예시 (구현 예정)
+## 출력 예시
 
-**summary 표**
+`polybench_2mm` 실행 결과(`settings/cache.yaml`, line_size 32).
+
+**summary (`<name>.json`)** — miss 분류 · 계층별 hit율 · cycle 통계
+
+```json
+{
+  "cold": 3875, "capacity": 11733, "conflict": 994,
+  "accesses": { "total": 1205200, "load": 900000, "store": 305200 },
+  "levels": {
+    "L1": { "hits": 1188598, "misses": 16602, "hit_rate": 0.986 },
+    "L2": { "hits": 12727,   "misses": 3875,  "hit_rate": 0.767 },
+    "Memory": { "accesses": 3875 }
+  },
+  "cycles": { "total": 5485024, "average_per_access": 4.551 }
+}
+```
+
+**객체별 breakdown (`<name>_objects.csv`)**
 
 ```
-Benchmark  L1 Miss%  L2 Miss%  Mem Access  AMAT(cyc)  Top Object  Top Loop
-2mm        8.31      1.42      1240        7.18       tmp         i-j-k
-atax       4.18      0.77       391        5.02       A           i-j
+object,accesses,hits,misses,miss_rate,...
+global::C,160000,147767,12233,0.0765,...
+global::B,140000,138131, 1869,0.0134,...
 ```
 
-**diagnostics.md**
+**진단 (`<name>_diagnostics.md`)**
 
-```
-Rank  Loop    Access       Miss%  Share  Miss Type   Hint
-1     i-j-k   B[k][j]      31.2   44.8   conflict    loop interchange 검토
-2     i-j-k   tmp[i][j]     9.7   18.1   store       write allocation 비용 확인
-3     i-j     A[i][j]       6.4   12.3   capacity    blocking 검토
-```
+| kind | message | object |
+|------|---------|--------|
+| capacity_blocking | capacity miss 비중 높음: blocking/tiling 검토 | |
+| object_targeted | global::C 우선 최적화 검토 | global::C |
 
 ---
 
@@ -224,9 +239,8 @@ Rank  Loop    Access       Miss%  Share  Miss Type   Hint
 | 항목 | 현황 |
 |------|------|
 | `sweep` 모드 | 미구현 — `run`만 제공 |
-| AMAT / delay 출력 | 미구현 — 현재 출력은 miss 개수만. `cache.yaml`의 `delay_cycles`는 시뮬레이션에 쓰이나 리포트에 노출 안 됨 |
+| Python 후처리 시각화 | 미구현 — 리포트 파일은 생성되나 플롯 생성 scripts는 예정 (Phase 8) |
 | 포인터-param 직접 접근 (무호출) | `yard.analyze` root가 포인터 param을 직접 인덱싱하고 호출자가 없으면 바깥 차원을 알 수 없어 객체 크기 과소추정. 호출자가 전역/로컬 배열을 넘기는 경우(현재 샘플)는 call 인자 바인딩으로 해소됨 |
-| CLI `--output` 디렉터리 | 자동 생성 안 함 — 디렉터리를 미리 만들어야 출력됨 |
 | 멀티코어 | 설정은 가능하나 통합 검증은 단일 코어 기준 |
 
 ---
