@@ -104,15 +104,8 @@ git submodule update --init --recursive
 cmake -S . -B build
 cmake --build build
 
-# 테스트 (GTest 바이너리 직접 실행)
-./build/test_ap_loader
-./build/test_event_builder
-./build/test_memory_layout
-./build/test_address_mapper
-./build/test_cache_set
-./build/test_cache_level
-./build/test_cache_hierarchy
-./build/test_yaml_parser
+# 테스트
+ctest --test-dir build
 ```
 
 ---
@@ -121,14 +114,35 @@ cmake --build build
 
 ```bash
 # 단일 실행 (구현 완료) — 입력은 APE LAT v2 JSON
-apex-cache run input_g_ape.json --cache cache.yaml [--output results/]
+./build/apex-cache run input_g_ape.json --cache cache.yaml [options]
 
 # sweep: L1 용량 범위 탐색 (예정)
-apex-cache sweep input_g_ape.json --cache cache.yaml --l1-sizes 4K,8K,16K,32K
+./build/apex-cache sweep input_g_ape.json --cache cache.yaml --l1-sizes 4K,8K,16K,32K
 ```
 
 `run`은 `--output`(기본 `results/`, 없으면 자동 생성)에 입력 파일명 기반으로
 `<name>.csv`, `<name>.json`, `<name>_diagnostics.md`, `<name>_objects.csv`를 생성한다.
+예를 들어 `examples/test_stencil_g_ape.json`은 `test_stencil_ape.*` 리포트로
+저장된다.
+
+### CLI 옵션
+
+| 옵션 | 설명 |
+|------|------|
+| `--cache <cache.yaml>` | 캐시 계층 설정 파일. `run`에서 필수 |
+| `--output <dir>` | 리포트 출력 디렉터리. 기본값은 `results` |
+| `--quiet` | 자동화용 최소 출력. 결과 디렉터리만 표시 |
+| `--verbose` | 캐시 설정 요약까지 함께 출력 |
+| `--no-color` | ANSI color 없이 plain text로 출력 |
+| `-h`, `--help` | 도움말 출력 |
+
+도움말은 아래 명령으로 확인할 수 있다.
+
+```bash
+./build/apex-cache --help
+./build/apex-cache help
+./build/apex-cache run --help
+```
 
 ### 설정 파일
 
@@ -187,6 +201,50 @@ mappings:
 ## 출력 예시
 
 `polybench_2mm` 실행 결과(`settings/cache.yaml`, line_size 32).
+
+**터미널 요약**
+
+`run`은 기본적으로 입력·설정·AP 규모·캐시 계층별 통계·miss breakdown·상위
+object·생성 리포트 절대 경로를 터미널에 출력한다. 대화형 터미널에서는 섹션,
+경로, hit/miss 수치가 색상으로 구분되며, CI 로그 등에서는 `--no-color`로
+plain text 출력을 사용할 수 있다.
+
+```text
+APEX-Cache run
+  input:  examples/test_stencil_g_ape.json
+  cache:  settings/cache.yaml
+  output: results/
+
+Loaded AP
+  roots:     stencil_1d_kernel
+  objects:   4
+  accesses:  392
+
+Cache summary
+  L1 misses: 26 / 392 (6.63%)
+  L1 hits:   366
+  L2 hits:   0
+  L2 misses: 26
+  memory:    26
+  cycles:    5000 total, 12.76 avg/access
+
+Miss breakdown
+  cold:     26
+  capacity: 0
+  conflict: 0
+  load:     13
+  store:    13
+
+Top objects by misses
+  global::in  13 / 294 (4.42%)
+  global::out  13 / 98 (13.27%)
+
+Wrote reports
+  /workspace/APEX-Cache/results/test_stencil_ape.json
+  /workspace/APEX-Cache/results/test_stencil_ape.csv
+  /workspace/APEX-Cache/results/test_stencil_ape_objects.csv
+  /workspace/APEX-Cache/results/test_stencil_ape_diagnostics.md
+```
 
 **summary (`<name>.json`)** — miss 분류 · 계층별 hit율 · cycle 통계
 
