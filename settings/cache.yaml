@@ -12,21 +12,21 @@ caches:
     line_size: 32 B
     associativity: 4
     replacement: LRU
-    write_policy: write-back
-    write_allocate: true
-    delay_cycles: 4
+    write_policy: write-through
+    write_allocate: false
+    delay_cycles: 1
     next: L2
   - name: L2
     role: LLC
     size_bytes: 2 MiB
     line_size: 32
-    associativity: 8
+    associativity: 4
     replacement: LRU
     write_policy: write-back
     write_allocate: true
-    delay_cycles: 12
+    delay_cycles: 10
     next: Memory
 
 memory:
   name: Memory
-  delay_cycles: 120
+  delay_cycles: 40
