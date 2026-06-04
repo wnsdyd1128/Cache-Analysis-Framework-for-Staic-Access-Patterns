@@ -158,6 +158,17 @@ mappings:
     core: 1
 ```
 
+### 리포트 시각화 (Python)
+
+생성된 리포트를 플롯(PNG)으로 후처리한다. 저장소 루트에서 실행한다.
+
+```bash
+python3 backend/main.py --results results/
+```
+
+`<results>/plots/`에 miss 분류·객체별 load/store miss·L1/L2 hit/miss
+PNG 3종을 생성한다. 의존성: `matplotlib`, `seaborn`.
+
 ---
 
 ## 구현 현황
