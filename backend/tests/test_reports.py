@@ -83,6 +83,38 @@ def test_find_reports_locates_summary_and_objects(tmp_path):
     assert objects.name == "bench_ape_objects.csv"
 
 
+def test_find_report_pairs_from_summary_file(tmp_path):
+    _write_summary_json(tmp_path / "bench_ape.json")
+    _write_objects_csv(tmp_path / "bench_ape_objects.csv")
+    pairs = reports.find_report_pairs(tmp_path / "bench_ape.json")
+    assert [(p.summary.name, p.objects.name, p.stem) for p in pairs] == [
+        ("bench_ape.json", "bench_ape_objects.csv", "bench_ape")
+    ]
+
+
+def test_find_report_pairs_from_directory_matches_each_basename(tmp_path):
+    _write_summary_json(tmp_path / "a_ape.json")
+    _write_objects_csv(tmp_path / "a_ape_objects.csv")
+    _write_summary_json(tmp_path / "b_ape.json")
+    _write_objects_csv(tmp_path / "b_ape_objects.csv")
+    _write_summary_json(tmp_path / "summary.json")
+
+    pairs = reports.find_report_pairs(tmp_path)
+
+    assert [(p.summary.name, p.objects.name, p.stem) for p in pairs] == [
+        ("a_ape.json", "a_ape_objects.csv", "a_ape"),
+        ("b_ape.json", "b_ape_objects.csv", "b_ape"),
+    ]
+
+
+def test_find_report_pairs_raises_when_summary_file_lacks_objects(tmp_path):
+    import pytest
+    _write_summary_json(tmp_path / "bench_ape.json")
+
+    with pytest.raises(FileNotFoundError):
+        reports.find_report_pairs(tmp_path / "bench_ape.json")
+
+
 def test_find_reports_raises_when_missing(tmp_path):
     import pytest
     with pytest.raises(FileNotFoundError):

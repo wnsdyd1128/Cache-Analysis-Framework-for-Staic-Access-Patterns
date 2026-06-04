@@ -6,10 +6,20 @@
 
 import csv
 import json
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Tuple
 
 _INT_FIELDS = ("accesses", "hits", "misses", "load_misses", "store_misses")
+
+
+@dataclass(frozen=True)
+class ReportPair:
+    """summary JSON과 object CSV의 같은 basename 리포트 쌍."""
+
+    summary: Path
+    objects: Path
+    stem: str
 
 
 def find_reports(results_dir) -> Tuple[Path, Path]:
@@ -19,13 +29,38 @@ def find_reports(results_dir) -> Tuple[Path, Path]:
     @return (summary_json_path, objects_csv_path)
     @raises FileNotFoundError  둘 중 하나라도 없을 때.
     """
-    d = Path(results_dir)
-    objects = sorted(d.glob("*_objects.csv"))
-    summaries = sorted(p for p in d.glob("*.json"))
-    if not summaries or not objects:
+    pair = find_report_pairs(results_dir)[0]
+    return pair.summary, pair.objects
+
+
+def find_report_pairs(input_path) -> list:
+    """summary JSON 파일 또는 디렉터리에서 basename이 맞는 리포트 쌍을 찾는다.
+
+    @param input_path  `<name>.json` 파일 또는 리포트 디렉터리.
+    @return ReportPair 목록. 디렉터리는 이름순으로 정렬한다.
+    @raises FileNotFoundError  대응하는 `<name>_objects.csv`가 없을 때.
+    """
+    path = Path(input_path)
+    if path.is_file():
+        return [_pair_for_summary(path)]
+    if path.is_dir():
+        pairs = []
+        for summary in sorted(path.glob("*.json")):
+            objects = summary.with_name(f"{summary.stem}_objects.csv")
+            if objects.exists():
+                pairs.append(ReportPair(summary, objects, summary.stem))
+        if pairs:
+            return pairs
+    raise FileNotFoundError(
+        f"리포트를 찾을 수 없음: {path} (<name>.json + <name>_objects.csv 필요)")
+
+
+def _pair_for_summary(summary: Path) -> ReportPair:
+    objects = summary.with_name(f"{summary.stem}_objects.csv")
+    if not objects.exists():
         raise FileNotFoundError(
-            f"리포트를 찾을 수 없음: {d} (*.json + *_objects.csv 필요)")
-    return summaries[0], objects[0]
+            f"object 리포트를 찾을 수 없음: {objects}")
+    return ReportPair(summary, objects, summary.stem)
 
 
 def load_summary(path) -> dict:

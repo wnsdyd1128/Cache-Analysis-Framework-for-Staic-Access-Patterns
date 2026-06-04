@@ -163,11 +163,17 @@ mappings:
 생성된 리포트를 플롯(PNG)으로 후처리한다. 저장소 루트에서 실행한다.
 
 ```bash
-python3 backend/main.py --results results/
+python3 backend/main.py results/
+python3 backend/main.py results/test_matmul_ape.json
 ```
 
-`<results>/plots/`에 miss 분류·객체별 load/store miss·L1/L2 hit/miss
-PNG 3종을 생성한다. 의존성: `matplotlib`, `seaborn`.
+디렉터리를 입력하면 내부의 각 `<name>.json` + `<name>_objects.csv` 쌍마다
+PNG 3종을 생성한다. 단일 JSON 파일을 입력하면 같은 basename의
+`<name>_objects.csv`를 함께 읽는다.
+
+출력 파일은 `<results>/plots/`에 `<name>_miss_breakdown.png`,
+`<name>_object_misses.png`, `<name>_cache_hit_miss.png` 형태로 저장된다.
+의존성: `matplotlib`, `seaborn`.
 
 ---
 
