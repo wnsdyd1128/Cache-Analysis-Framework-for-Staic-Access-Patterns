@@ -223,4 +223,4 @@ APEX-Cache/
 
 ## 라이선스
 
-TBD
+[MIT License](LICENSE) © 2026 OBC-SIM
