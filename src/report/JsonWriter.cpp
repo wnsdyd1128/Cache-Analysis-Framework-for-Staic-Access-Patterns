@@ -13,8 +13,19 @@ void JsonWriter::write_summary(std::ostream & os, const MissStats & stats)
   j["cold"] = stats.cold;
   j["capacity"] = stats.capacity;
   j["conflict"] = stats.conflict;
+  j["policy"] = stats.policy;
   j["load"] = stats.load;
   j["store"] = stats.store;
+  j["miss_breakdown"]["cause"] = {
+    {"cold", stats.cold},
+    {"capacity", stats.capacity},
+    {"conflict", stats.conflict},
+    {"policy", stats.policy},
+  };
+  j["miss_breakdown"]["operation"] = {
+    {"load", stats.load},
+    {"store", stats.store},
+  };
   os << j.dump(2) << '\n';
 }
 
@@ -25,8 +36,19 @@ void JsonWriter::write_summary(std::ostream & os, const MissStats & miss_stats,
   j["cold"] = miss_stats.cold;
   j["capacity"] = miss_stats.capacity;
   j["conflict"] = miss_stats.conflict;
+  j["policy"] = miss_stats.policy;
   j["load"] = miss_stats.load;
   j["store"] = miss_stats.store;
+  j["miss_breakdown"]["cause"] = {
+    {"cold", miss_stats.cold},
+    {"capacity", miss_stats.capacity},
+    {"conflict", miss_stats.conflict},
+    {"policy", miss_stats.policy},
+  };
+  j["miss_breakdown"]["operation"] = {
+    {"load", miss_stats.load},
+    {"store", miss_stats.store},
+  };
 
   j["accesses"] = {
     {"total", cache_stats.total_accesses},

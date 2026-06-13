@@ -7,22 +7,23 @@ namespace apex
 
 void CsvWriter::write_summary(std::ostream & os, const MissStats & stats)
 {
-  os << "cold,capacity,conflict,load,store\n";
+  os << "cold,capacity,conflict,policy,load,store\n";
   os << stats.cold << ',' << stats.capacity << ',' << stats.conflict << ','
-     << stats.load << ',' << stats.store << '\n';
+     << stats.policy << ',' << stats.load << ',' << stats.store << '\n';
 }
 
 void CsvWriter::write_summary(std::ostream & os, const MissStats & miss_stats,
                               const SimulationStats & cache_stats)
 {
-  os << "cold,capacity,conflict,load,store,total_accesses,load_accesses,"
+  os << "cold,capacity,conflict,policy,load,store,total_accesses,load_accesses,"
         "store_accesses,l1_hits,l1_misses,l1_hit_rate,l2_hits,l2_misses,"
         "l2_hit_rate,memory_accesses,total_cycles,average_cycles_per_access,"
         "write_through_writes,writebacks,dirty_evictions,writeback_cycles\n";
   os << miss_stats.cold << ',' << miss_stats.capacity << ','
-     << miss_stats.conflict << ',' << miss_stats.load << ',' << miss_stats.store
-     << ',' << cache_stats.total_accesses << ',' << cache_stats.load_accesses
-     << ',' << cache_stats.store_accesses << ',' << cache_stats.l1_hits << ','
+     << miss_stats.conflict << ',' << miss_stats.policy << ','
+     << miss_stats.load << ',' << miss_stats.store << ','
+     << cache_stats.total_accesses << ',' << cache_stats.load_accesses << ','
+     << cache_stats.store_accesses << ',' << cache_stats.l1_hits << ','
      << cache_stats.l1_misses << ',' << cache_stats.l1_hit_rate() << ','
      << cache_stats.l2_hits << ',' << cache_stats.l2_misses << ','
      << cache_stats.l2_hit_rate() << ',' << cache_stats.memory_accesses << ','

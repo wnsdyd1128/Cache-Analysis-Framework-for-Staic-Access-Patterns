@@ -28,6 +28,7 @@ RunLogContext make_context()
   ctx.miss_stats.cold = 14;
   ctx.miss_stats.capacity = 0;
   ctx.miss_stats.conflict = 0;
+  ctx.miss_stats.policy = 0;
   ctx.miss_stats.load = 1;
   ctx.miss_stats.store = 13;
 
@@ -90,6 +91,7 @@ TEST(RunLogger, default_summary_contains_miss_breakdown)
   EXPECT_NE(out.find("cold:     14"), std::string::npos);
   EXPECT_NE(out.find("capacity: 0"), std::string::npos);
   EXPECT_NE(out.find("conflict: 0"), std::string::npos);
+  EXPECT_NE(out.find("policy:   0"), std::string::npos);
   EXPECT_NE(out.find("load:     1"), std::string::npos);
   EXPECT_NE(out.find("store:    13"), std::string::npos);
 }

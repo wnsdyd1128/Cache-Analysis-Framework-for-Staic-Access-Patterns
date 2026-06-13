@@ -148,6 +148,8 @@ std::string RunLogger::format(const RunLogContext & context, RunLogMode mode,
      << number(context.miss_stats.capacity, "33", color_enabled) << '\n';
   os << "  " << label("conflict:", color_enabled) << ' '
      << number(context.miss_stats.conflict, "31", color_enabled) << '\n';
+  os << "  " << label("policy:", color_enabled) << "   "
+     << number(context.miss_stats.policy, "35", color_enabled) << '\n';
   os << "  " << label("load:", color_enabled) << "     "
      << number(context.miss_stats.load, "36", color_enabled) << '\n';
   os << "  " << label("store:", color_enabled) << "    "

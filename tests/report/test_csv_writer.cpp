@@ -25,6 +25,7 @@ TEST(CsvWriter, summary_has_header_row)
   EXPECT_NE(out.find("cold"), std::string::npos);
   EXPECT_NE(out.find("capacity"), std::string::npos);
   EXPECT_NE(out.find("conflict"), std::string::npos);
+  EXPECT_NE(out.find("policy"), std::string::npos);
 }
 
 TEST(CsvWriter, summary_data_row_matches_stats)
@@ -91,6 +92,7 @@ TEST(CsvWriter, extended_summary_contains_access_level_and_cycle_columns)
   EXPECT_NE(out.find("writebacks"), std::string::npos);
   EXPECT_NE(out.find("dirty_evictions"), std::string::npos);
   EXPECT_NE(out.find("writeback_cycles"), std::string::npos);
+  EXPECT_NE(out.find("policy"), std::string::npos);
 }
 
 TEST(CsvWriter, extended_summary_writes_write_traffic_values)

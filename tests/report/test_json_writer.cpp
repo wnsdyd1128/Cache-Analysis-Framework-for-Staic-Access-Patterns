@@ -14,6 +14,7 @@ TEST(JsonWriter, output_is_valid_json)
   stats.cold = 1;
   stats.capacity = 2;
   stats.conflict = 3;
+  stats.policy = 1;
   stats.load = 4;
   stats.store = 2;
 
@@ -39,6 +40,8 @@ TEST(JsonWriter, summary_contains_required_fields)
   EXPECT_TRUE(j.contains("cold"));
   EXPECT_TRUE(j.contains("capacity"));
   EXPECT_TRUE(j.contains("conflict"));
+  EXPECT_TRUE(j.contains("policy"));
+  EXPECT_TRUE(j.contains("miss_breakdown"));
   EXPECT_TRUE(j.contains("load"));
   EXPECT_TRUE(j.contains("store"));
 }
@@ -49,6 +52,7 @@ TEST(JsonWriter, summary_values_match_stats)
   stats.cold = 5;
   stats.capacity = 3;
   stats.conflict = 2;
+  stats.policy = 1;
   stats.load = 8;
   stats.store = 2;
 
@@ -59,6 +63,8 @@ TEST(JsonWriter, summary_values_match_stats)
   EXPECT_EQ(j["cold"].get<uint64_t>(), 5u);
   EXPECT_EQ(j["capacity"].get<uint64_t>(), 3u);
   EXPECT_EQ(j["conflict"].get<uint64_t>(), 2u);
+  EXPECT_EQ(j["policy"].get<uint64_t>(), 1u);
+  EXPECT_EQ(j["miss_breakdown"]["cause"]["policy"].get<uint64_t>(), 1u);
 }
 
 TEST(JsonWriter, extended_summary_contains_access_level_and_cycle_stats)
@@ -97,6 +103,7 @@ TEST(JsonWriter, extended_summary_preserves_legacy_miss_fields)
   miss.cold = 1;
   miss.capacity = 2;
   miss.conflict = 3;
+  miss.policy = 5;
   miss.load = 4;
   miss.store = 2;
 
@@ -109,8 +116,30 @@ TEST(JsonWriter, extended_summary_preserves_legacy_miss_fields)
   EXPECT_EQ(j["cold"].get<uint64_t>(), 1u);
   EXPECT_EQ(j["capacity"].get<uint64_t>(), 2u);
   EXPECT_EQ(j["conflict"].get<uint64_t>(), 3u);
+  EXPECT_EQ(j["policy"].get<uint64_t>(), 5u);
   EXPECT_EQ(j["load"].get<uint64_t>(), 4u);
   EXPECT_EQ(j["store"].get<uint64_t>(), 2u);
+}
+
+TEST(JsonWriter, extended_summary_contains_structured_miss_breakdown)
+{
+  apex::MissStats miss;
+  miss.cold = 1;
+  miss.capacity = 2;
+  miss.conflict = 3;
+  miss.policy = 4;
+  miss.load = 5;
+  miss.store = 6;
+
+  apex::SimulationStats cache;
+  std::ostringstream oss;
+  apex::JsonWriter::write_summary(oss, miss, cache);
+  auto j = nlohmann::json::parse(oss.str());
+
+  EXPECT_EQ(j["miss_breakdown"]["cause"]["cold"].get<uint64_t>(), 1u);
+  EXPECT_EQ(j["miss_breakdown"]["cause"]["policy"].get<uint64_t>(), 4u);
+  EXPECT_EQ(j["miss_breakdown"]["operation"]["load"].get<uint64_t>(), 5u);
+  EXPECT_EQ(j["miss_breakdown"]["operation"]["store"].get<uint64_t>(), 6u);
 }
 
 TEST(JsonWriter, extended_summary_contains_write_traffic_stats)
