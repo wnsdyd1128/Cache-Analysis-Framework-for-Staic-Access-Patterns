@@ -63,7 +63,7 @@ PipelineResult run(const char* json, HierarchyConfig cfg)
 
 uint64_t total_misses(const MissStats& s)
 {
-  return s.cold + s.capacity + s.conflict;
+  return s.cold + s.capacity + s.conflict + s.policy;
 }
 
 // 1D 순차: A[64], line 32(=8 ints/line) → 8 라인 → 8 cold miss.
@@ -73,6 +73,16 @@ const char* kSeq1d = R"({
   "functions":[{"function":"f","params":[],"annotations":["yard.analyze"],"body":[
     {"type":"Loop","var":"i","start":0,"bound":64,"depth":1,"body":[
       {"type":"Array","object":"global::A","access_path":[{"kind":"index","value":"i"}],"op":"load"}
+    ]}
+  ]}]
+})";
+
+const char* kSeq1dStore = R"({
+  "schema_version":2,
+  "metadata":{"objects":{"global::A":{"kind":"array","shape":[100],"elem_type":"i32","elem_size":4}},"structs":{}},
+  "functions":[{"function":"f","params":[],"annotations":["yard.analyze"],"body":[
+    {"type":"Loop","var":"i","start":0,"bound":100,"depth":1,"body":[
+      {"type":"Array","object":"global::A","access_path":[{"kind":"index","value":"i"}],"op":"store"}
     ]}
   ]}]
 })";
@@ -221,6 +231,21 @@ TEST(PipelineV2, local_2d_respects_no_write_allocate_store_misses)
   EXPECT_EQ(r.cache_stats.objects.at("fn::A").misses, 4096u);
   EXPECT_EQ(r.cache_stats.objects.at("fn::A").hits, 0u);
   EXPECT_EQ(r.cache_stats.objects.at("fn::B").misses, 256u);
+}
+
+TEST(PipelineV2, write_through_no_allocate_store_stream_reports_policy_misses)
+{
+  auto r =
+    run(kSeq1dStore, make_write_through_no_allocate_config(32768, 32, 8));
+
+  EXPECT_EQ(r.stats.cold, 13u);
+  EXPECT_EQ(r.stats.capacity, 0u);
+  EXPECT_EQ(r.stats.conflict, 0u);
+  EXPECT_EQ(r.stats.policy, 87u);
+  EXPECT_EQ(r.stats.store, 100u);
+  EXPECT_EQ(r.cache_stats.l1_misses, 100u);
+  EXPECT_EQ(r.cache_stats.l2_hits, 87u);
+  EXPECT_EQ(r.cache_stats.l2_misses, 13u);
 }
 
 TEST(PipelineV2, stride_equal_to_line_misses_every_access)

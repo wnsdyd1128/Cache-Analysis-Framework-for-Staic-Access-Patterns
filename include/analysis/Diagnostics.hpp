@@ -12,6 +12,7 @@ struct MissStats
   uint64_t cold = 0;
   uint64_t capacity = 0;
   uint64_t conflict = 0;
+  uint64_t policy = 0;
   uint64_t load = 0;
   uint64_t store = 0;
   std::unordered_map<std::string, uint64_t> by_object;

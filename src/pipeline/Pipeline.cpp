@@ -61,6 +61,14 @@ PipelineResult Pipeline::simulate(const std::vector<AccessEvent> & events)
     }
     return classifiers.emplace(core, MissClassifier{lines}).first->second;
   };
+  auto l1_store_miss_bypasses_fill = [&](int core) {
+    for (const auto & c : config_.caches)
+    {
+      if (c.role == "L1" && c.private_to == core)
+        return !c.write_allocate;
+    }
+    return false;
+  };
 
   CacheHierarchy hierarchy(config_);
   PipelineResult result;
@@ -77,7 +85,10 @@ PipelineResult Pipeline::simulate(const std::vector<AccessEvent> & events)
       res.write_through_writes, res.writebacks, res.dirty_evictions,
       res.writeback_cycles);
 
-    auto miss_type = classifier_for(e.core_id).classify(e.cache_line, l1_miss);
+    const bool fill_l1 = !(l1_miss && is_store &&
+                           l1_store_miss_bypasses_fill(e.core_id));
+    auto miss_type =
+      classifier_for(e.core_id).classify(e.cache_line, l1_miss, fill_l1);
 
     if (!l1_miss) continue;
 
@@ -96,6 +107,9 @@ PipelineResult Pipeline::simulate(const std::vector<AccessEvent> & events)
           break;
         case MissType::Conflict:
           result.stats.conflict += 1;
+          break;
+        case MissType::Policy:
+          result.stats.policy += 1;
           break;
       }
     }

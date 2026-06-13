@@ -11,7 +11,8 @@ std::vector<DiagnosticHint> Diagnostics::generate(const MissStats & stats) const
 {
   std::vector<DiagnosticHint> hints;
 
-  uint64_t total_typed = stats.cold + stats.capacity + stats.conflict;
+  uint64_t total_typed =
+    stats.cold + stats.capacity + stats.conflict + stats.policy;
   uint64_t total_op = stats.load + stats.store;
 
   if (total_typed > 0)

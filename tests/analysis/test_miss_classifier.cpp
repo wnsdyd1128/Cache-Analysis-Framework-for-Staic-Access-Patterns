@@ -51,3 +51,13 @@ TEST(MissClassifier, conflict_miss_when_set_assoc_misses_but_fa_hits)
   ASSERT_TRUE(result.has_value());
   EXPECT_EQ(*result, apex::MissType::Conflict);
 }
+
+TEST(MissClassifier, bypassed_repeated_miss_is_policy_miss)
+{
+  apex::MissClassifier cls(8);
+  cls.classify(1, true, false);  // cold miss, no L1/FA fill
+
+  auto result = cls.classify(1, true, false);
+  ASSERT_TRUE(result.has_value());
+  EXPECT_EQ(*result, apex::MissType::Policy);
+}

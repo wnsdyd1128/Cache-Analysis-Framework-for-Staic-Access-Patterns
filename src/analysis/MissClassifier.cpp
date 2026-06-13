@@ -31,15 +31,17 @@ bool MissClassifier::fa_access(uint64_t cache_line)
 }
 
 std::optional<MissType> MissClassifier::classify(uint64_t cache_line,
-                                                 bool is_actual_miss)
+                                                 bool is_actual_miss,
+                                                 bool fill_l1)
 {
   bool is_cold = (ever_seen_.count(cache_line) == 0);
-  bool fa_hit = fa_access(cache_line);  // FA 상태 갱신 (항상 실행)
+  bool fa_hit = fill_l1 ? fa_access(cache_line) : false;
   ever_seen_.insert(cache_line);
 
   if (!is_actual_miss) return std::nullopt;
 
   if (is_cold) return MissType::Cold;
+  if (!fill_l1) return MissType::Policy;
   if (fa_hit) return MissType::Conflict;
   return MissType::Capacity;
 }
