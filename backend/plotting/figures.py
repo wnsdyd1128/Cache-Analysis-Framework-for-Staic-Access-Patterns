@@ -7,12 +7,17 @@
 from backend import reports
 from backend.plotting import bars, style
 
-_MISS_COLORS = {"cold": "#55A868", "capacity": "#4C72B0", "conflict": "#C44E52"}
+_MISS_COLORS = {
+    "cold": "#55A868",
+    "capacity": "#4C72B0",
+    "conflict": "#C44E52",
+    "policy": "#8172B3",
+}
 _WRITE_COLORS = ("#4C72B0", "#DD8452", "#55A868", "#8172B3")
 
 
 def figure_miss_breakdown(summary: dict):
-    """cold/capacity/conflict miss 수 막대 figure를 만든다."""
+    """cause별 miss 수 막대 figure를 만든다."""
     import matplotlib.pyplot as plt
 
     bd = reports.miss_breakdown(summary)

@@ -87,8 +87,10 @@ def load_objects(path) -> list:
 
 
 def miss_breakdown(summary: dict) -> dict:
-    """summary에서 cold/capacity/conflict miss 수를 추출한다."""
-    return {k: summary[k] for k in ("cold", "capacity", "conflict")}
+    """summary에서 cause별 miss 수를 추출한다."""
+    if "miss_breakdown" in summary:
+        return dict(summary["miss_breakdown"]["cause"])
+    return {k: summary.get(k, 0) for k in ("cold", "capacity", "conflict", "policy")}
 
 
 def hit_miss_rates(summary: dict) -> dict:

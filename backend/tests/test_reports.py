@@ -64,11 +64,35 @@ def test_top_objects_limits_to_n(tmp_path):
     assert len(reports.top_objects_by_misses(rows, n=2)) == 2
 
 
-def test_miss_breakdown_extracts_three_types(tmp_path):
+def test_miss_breakdown_extracts_cause_types(tmp_path):
     p = tmp_path / "x.json"
     _write_summary_json(p)
     s = reports.load_summary(p)
-    assert reports.miss_breakdown(s) == {"cold": 3875, "capacity": 11733, "conflict": 994}
+    assert reports.miss_breakdown(s) == {
+        "cold": 3875,
+        "capacity": 11733,
+        "conflict": 994,
+        "policy": 0,
+    }
+
+
+def test_miss_breakdown_prefers_structured_cause(tmp_path):
+    s = {
+        "cold": 1,
+        "capacity": 2,
+        "conflict": 3,
+        "policy": 4,
+        "miss_breakdown": {
+            "cause": {"cold": 5, "capacity": 6, "conflict": 7, "policy": 8},
+            "operation": {"load": 9, "store": 10},
+        },
+    }
+    assert reports.miss_breakdown(s) == {
+        "cold": 5,
+        "capacity": 6,
+        "conflict": 7,
+        "policy": 8,
+    }
 
 
 def test_hit_miss_rates_splits_each_level(tmp_path):
